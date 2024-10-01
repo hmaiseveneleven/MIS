@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIYA - Stadium In Your Area</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Icons8_flat_sports_mode.svg/768px-Icons8_flat_sports_mode.svg.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #0d3c6e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-logo {
+            display: flex;
+            font-size: 28px;
+            font-weight: bold;
+            margin-right: auto;
+            align-items: center;
+        }
+        .navbar-logo a {
+            display: flex;                 /* Đảm bảo tất cả nội dung trong a là flexbox */
+            text-decoration: none;         /* Bỏ gạch chân ở liên kết */
+            color: inherit;                /* Kế thừa màu chữ từ phần tử cha */
+        }
+        .navbar-logo img {
+            width: 50px;
+            height: auto;
+            margin-right: 2px;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            text-align: center; /* Căn giữa chữ SIYA và subtitle */
+        }
+        .subtitle {      
+            font-size: 12px;    /* Kích thước chữ nhỏ */
+            color: white;        /* Màu chữ (tùy chọn) */
+        }
+        .navbar-menu {
+            display: flex;
+            list-style-type: none;
+        }
+        .navbar-menu li {
+            margin-right: 20px;
+            position: relative;
+        }
+        .navbar-menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+
+        .dropdown-content, .sub-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown:hover .dropdown-content,
+        .sub-dropdown:hover .sub-dropdown-content {
+            display: block;
+        }
+        .dropdown-content a, .sub-dropdown-content a {
+            color: #0d3c6e;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover, .sub-dropdown-content a:hover {
+            background-color: #ddd;
+            color: orange;
+        }
+        .sub-dropdown {
+            position: relative;
+        }
+        .sub-dropdown-content {
+            left: 100%;
+            top: 0;
+            min-width: 200px;
+        }
+
+
+        .dropbtn {
+            color: white;
+            font-size: 16px;
+            border: none;
+            background-color: inherit;
+        }
+
+
+
+
+        .home-section {
+            position: relative;
+            height: 100vh;
+            background: url('https://www.insidesport.in/wp-content/uploads/2022/06/Football-Ground.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .home-section::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .home-content {
+            position: relative;
+            z-index: 1;
+        }
+        .home-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .home-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .venue-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .venue-card {
+            width: 30%; /* Adjust the width to allow 3 cards per row */
+            margin: 10px; /* Reduce margin slightly */
+            padding: 8px; /* Adjust padding for smaller size */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .venue-card img {
+            width: 100%;
+            height: 180px; /* Reduce height for smaller image size */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+
+
+
+        .venue-card h3 {
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+        .venue-info {
+            text-align: left;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .venue-info p {
+            margin: 5px 0;
+        }
+        .venue-info span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+            <img src="https://i.postimg.cc/xTCbQbcG/image-removebg-preview.png" alt="logo">
+            <div class="logo-text">
+                SIYA
+                <span class="subtitle">Stadium in your area</span>
+            </div>
+        </a>
+    </div>
+    <ul class="navbar-menu">
+        <li><a href="#">Về chúng tôi</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Sân theo khu vực</a>
+            <div class="dropdown-content">
+                <!-- TPHCM Dropdown -->
+                <div class="sub-dropdown">
+                    <a href="#">TPHCM</a>
+                    <div class="sub-dropdown-content">
+                        <a href="quan1.html" onclick="showDistrictVenues('quan1')">Quận 1</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan2')">Quận 2</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan3')">Quận 3</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan4')">Quận 4</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan5')">Quận 5</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan6')">Quận 6</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan7')">Quận 7</a>
+                        <a href="quan8.html" onclick="showDistrictVenues('quan8')">Quận 8</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan9')">Quận 9</a>
+                        <a href="quan10.html" onclick="showDistrictVenues('quan10')">Quận 10</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan11')">Quận 11</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quan12')">Quận 12</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quanBinhThanh')">Bình Thạnh</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quanBinhTan')">Bình Tân</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quanPhuNhuan')">Phú Nhuận</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quanTanBinh')">Tân Bình</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quanTanPhu')">Tân Phú</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('quanGoVap')">Gò Vấp</a>
+                    </div>
+                </div>
+                <!-- Hà Nội Dropdown -->
+                <div class="sub-dropdown">
+                    <a href="#">Hà Nội</a>
+                    <div class="sub-dropdown-content">
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('badinh')">Quận Ba Đình</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('hoankiem')">Quận Hoàn Kiếm</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('dongda')">Quận Đống Đa</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('caugiay')">Quận Cầu Giấy</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('tayho')">Quận Tây Hồ</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('haibatrung')">Quận Hai Bà Trưng</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('hoangmai')">Quận Hoàng Mai</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('longbien')">Quận Long Biên</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('thanhxuan')">Quận Thanh Xuân</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('namtuliem')">Quận Nam Từ Liêm</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('bactuliem')">Quận Bắc Từ Liêm</a>
+                    </div>
+                </div>
+                <!-- TP Đà Nẵng Dropdown -->
+                <div class="sub-dropdown">
+                    <a href="#">TP Đà Nẵng</a>
+                    <div class="sub-dropdown-content">
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('haichau')">Quận Hải Châu</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('thanhkhe')">Quận Thanh Khê</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('sontra')">Quận Sơn Trà</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('nguHanhSon')">Quận Ngũ Hành Sơn</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('camLe')">Quận Cẩm Lệ</a>
+                        <a href="javascript:void(0)" onclick="showDistrictVenues('lienChieu')">Quận Liên Chiểu</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li><a href="#">Dành cho chủ sân</a></li>
+        <li><a href="login.html">Đăng ký thành viên</a></li>
+        <li><a href="#">CSKH</a></li>
+    </ul>
+</div>
+<main>
+    <section class="venue-list" id="venue-list">
+        <!-- Thông tin sân sẽ được hiển thị ở đây -->
+        <div class="venue-card" data-name="Sân cầu lông Tao Đàn">
+            <img src="https://babolat.com.vn/wp-content/uploads/2023/10/san-cau-long-tao-dan.jpg" alt="Sân cầu lông Tao Đàn">
+            <h3>Sân cầu lông Tao Đàn</h3>
+            <p>Địa chỉ: 01 Huyền Trân Công Chúa, Phường Bến Thành, Quận 1</p>
+            <p>Giá thuê: 50.000 đến 80.000 VNĐ/giờ</p>
+            <p>Số sân: 6</p>
+        </div>
+        <div class="venue-card" data-name="Sân cầu lông Cầu Kho">
+            <img src="https://eduoka.com/uploads/0000/7/2024/08/05/so-luoc-ve-san-cau-long-cau-kho.jpg" alt="Sân cầu lông Cầu Kho">
+            <h3>Sân cầu lông Cầu Kho</h3>
+            <p>Địa chỉ: Số 2 Nguyễn Văn Cừ, Quận 1</p>
+            <p>Giá thuê: 50.000 - 80.000 VNĐ/giờ</p>
+            <p>Số sân: 4</p>
+        </div>
+        <div class="venue-card" data-name="Sân Tennis hội trường Thống Nhất">
+            <img src="https://media.diadiem247.com/uploads/thumb/2022/07/19/ADCB7626-554E-4693-9E34-208E6F01A0CB.jpeg" alt="Sân Tennis hội trường Thống Nhất">
+            <h3>Sân Tennis hội trường Thống Nhất</h3>
+            <p>Địa chỉ: 108 Nguyễn Du, Phường Bến Thành, Quận 1</p>
+            <p>Giá thuê: 150.000VND – 250.000 VND/giờ</p>
+            <p>Số sân: 4</p>
+        </div>
+        <div class="venue-card" data-name="Sân Tennis Cung Văn Hoá Lao Động TPHCM">
+            <img src="https://media.diadiem247.com/uploads/thumb/2022/07/19/9ED0E0D6-4819-453A-B241-A997FE11D5A3.jpeg" alt="Sân Tennis Cung Văn Hoá Lao Động TPHCM">
+            <h3>Sân Tennis Cung Văn Hoá Lao Động TPHCM</h3>
+            <p>Địa chỉ: 55B Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1</p>
+            <p>Giá thuê: 150.000VND – 300.000 VNĐ/giờ</p>
+            <p>Số sân: 2</p>
+        </div>
+        <div class="venue-card" data-name="Sân bóng rổ Hoa Lư">
+            <img src="https://thethaodonga.com/wp-content/uploads/2022/12/san-bong-ro-hoa-lu-4.jpg" alt="Sân bóng rổ Hoa Lư">
+            <h3>Sân bóng rổ Hoa Lư</h3>
+            <p>Địa chỉ: 2 Đinh Tiên Hoàng, Đa Kao, Quận 1</p>
+            <p>Giá thuê: 150.000VND – 300.000 VNĐ/giờ</p>
+            <p>Số sân: 2</p>
+        </div>
+        <div class="venue-card" data-name="Sân bóng rổ Cung Văn Hóa Lao Động">
+            <img src="https://cdnmedia.webthethao.vn/uploads/img/files/images/fullsize/2019/09/26/BR/cvh-lao-dong-4.jpg" alt="Sân bóng rổ Cung Văn Hóa Lao Động">
+            <h3>Sân bóng rổ Cung Văn Hóa Lao Động</h3>
+            <p>Địa chỉ: 55B Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1</p>
+            <p>Giá thuê: 200.000 VNĐ/giờ</p>
+            <p>Số sân: 1</p>
+        </div>
+        <div class="venue-card" data-name="Sân Bóng đá Thành Phát">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYuZcas9gNP04Y1IYArcGK9LSvr9dA6ywiyMPJDMtLwmALTX4s1WuwNrolAy7VQv54M0k&usqp=CAU" alt="Sân Bóng đá Thành Phát">
+            <h3>Sân Bóng đá Thành Phát</h3>
+            <p>Địa chỉ: Số 4, Đinh Tiên Hoàng, Quận 1</p>
+            <p>Giá thuê: 300.000 - 500.000 VNĐ/giờ</p>
+            <p>Số sân: 2</p>
+        </div>
+        <div class="venue-card" data-name="Sân bóng đá Tao Đàn">
+            <img src="https://bongdaphui.vn/wp-content/uploads/2024/06/san-bong-da-quan-1-6.webp" alt="Sân bóng đá Tao Đàn">
+            <h3>Sân bóng đá Tao Đàn</h3>
+            <p>Địa chỉ: 1 Huyền Trân Công Chúa, Phường Bến Thành, Quận 1, TPHCM</p>
+            <p>Giá thuê: 400.000 - 700.000 VNĐ/giờ</p>
+            <p>Số sân: 2</p>
+        </div>
+        <!-- Thêm các sân khác tại đây -->
+    </section>
+</main>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
